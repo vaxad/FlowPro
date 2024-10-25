@@ -5,6 +5,7 @@ import Navbar from "@/components/custom/navbar";
 import { BackgroundBeamsWithCollision } from "@/components/ui/bg-beams";
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "sonner";
+import { FormProvider } from "@/lib/context/form";
 
 const font = Poppins({
   subsets: ['latin'],
@@ -23,18 +24,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${font.className} antialiased min-h-screen`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Toaster />
-          <BackgroundBeamsWithCollision className="w-full h-full">
-            <Navbar />
-            {children}
-          </BackgroundBeamsWithCollision>
-        </ThemeProvider>
+        <FormProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Toaster />
+            <BackgroundBeamsWithCollision className="w-full h-full">
+              <Navbar />
+              {children}
+            </BackgroundBeamsWithCollision>
+          </ThemeProvider>
+        </FormProvider>
       </body>
     </html>
   );
