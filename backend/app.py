@@ -2,7 +2,7 @@ from backend.models import EmbeddingsResponse, GraphData
 from backend.constants import cypher_chain, embeddings_model
 from backend.models import QueryRequest
 from backend.constants import driver, rag
-from backend.utils import add_module_node, add_package_exports, add_symbol_node, add_symbol_dependency_edge, add_module_dependency_edge, add_symbol_source_code_node, clear_graph, convert_brd_to_schema, convert_query_to_schema, update_module_embeddings, update_symbol_embeddings
+from backend.utils import add_module_node, add_package_exports, add_symbol_node, add_symbol_dependency_edge, add_module_dependency_edge, add_symbol_source_code_node, clear_graph, convert_brd_to_schema, convert_query_to_schema, convert_zip_to_graph, update_module_embeddings, update_symbol_embeddings
 from typing import Dict
 from fastapi import FastAPI, HTTPException, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -218,6 +218,14 @@ async def generate_schema(file: UploadFile = File(...)) -> Dict:
     except Exception as e:
         return {"error": str(e)}
 
+@app.post("/create_graph_from_zip")
+async def create_graph_from_zip(file: UploadFile = File(...)) -> Dict:
+    try:
+        res = await convert_zip_to_graph(file)
+        return res
+    except Exception as e:
+        return {"error": str(e)}
+    
 @app.post("/query_schema")
 async def query_schema(request: QueryRequest):
     try:

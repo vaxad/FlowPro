@@ -80,6 +80,61 @@ Generate a comprehensive database schema based on the entities and relationships
 """
 )
 
+JS_PARSER = ChatPromptTemplate.from_template("""
+Analyze the following code and create dependency graph schema in JSON format following this structure:
+{{
+    "moduleDependencyEdges": [
+        {{
+            "dependentModulePath": "STRING",   // Path of the module that depends on another module
+            "dependencyModulePath": "STRING"   // Path of the module being depended on
+        }}, 
+        {{
+            "dependentModulePath": "STRING",   // Path of the module that depends on another module
+            "dependencyModulePath": "STRING"   // Path of the module being depended on
+        }}  
+    ],
+    "moduleNodes": [
+        {{
+            "moduleName": "STRING",           // Name of the module
+            "modulePath": "STRING",           // File path of the module in the codebase
+            "moduleSourceCode": "STRING"      // Source code for the module
+        }},
+        {{
+            "moduleName": "STRING",           // Name of the module
+            "modulePath": "STRING",           // File path of the module in the codebase
+            "moduleSourceCode": "STRING"      // Source code for the module
+        }}
+    ],
+    "symbolDependencyEdges": [
+        {{
+            "dependentModulePath": "STRING",   // Path of the module that depends on a symbol
+            "dependencySymbolPath": "STRING",  // Path of the module where the symbol is defined
+            "dependencySymbolName": "STRING"   // Name of the symbol that is depended on
+        }},
+        {{
+            "dependentModulePath": "STRING",   // Path of the module that depends on a symbol
+            "dependencySymbolPath": "STRING",  // Path of the module where the symbol is defined
+            "dependencySymbolName": "STRING"   // Name of the symbol that is depended on
+        }}
+    ],
+    "symbolNodes": [
+        {{
+            "symbolModulePath": "STRING",       // Path of the module where the symbol is located
+            "symbolName": "STRING"              // Name of the symbol
+        }},
+        {{
+            "symbolModulePath": "STRING",       // Path of the module where the symbol is located
+            "symbolName": "STRING"              // Name of the symbol
+        }}
+    ]
+}}
+
+Text content:
+{text}
+Generate a comprehensive dependency graph schema based on the entities and relationships identified in the code.
+"""
+)
+
 text_splitter = CharacterTextSplitter(
     separator="\n",
     chunk_size=2000,
