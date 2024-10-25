@@ -5,6 +5,7 @@ import { useGenerateForm } from '../hooks/form';
 import { UseFormReturn } from 'react-hook-form';
 
 interface FormState {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   form: UseFormReturn<GenerateFormData, any, undefined>;
 }
 

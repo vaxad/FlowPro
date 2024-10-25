@@ -3,7 +3,7 @@ import { Handle, Node, NodeProps, Position, useReactFlow } from '@xyflow/react';
 import { Attribute, ConstraintType } from '@/lib/types/project';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { ExpandIcon, PlusIcon, ShrinkIcon, Trash2Icon } from 'lucide-react';
+import { ExpandIcon, ShrinkIcon, Trash2Icon } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select';
 import { attributeTypes } from '@/lib/maps/project';
 
@@ -139,7 +139,7 @@ export default function EntityNode({ data, id }: NodeProps<EntityNodeProps>) {
 
                     <div className='grid grid-cols-3 items-center justify-center my-3' >
                         <div className='w-full  border'></div>
-                        <div className='text-center text-sm rounded-lg border bg-white text-black font-medium px-2 py-1 cursor-pointer'  onClick={onAddAttribute}>+ Add More</div>
+                        <div className='text-center text-sm rounded-lg border bg-white text-black font-medium px-2 py-1 cursor-pointer' onClick={onAddAttribute}>+ Add More</div>
                         <div className='w-full  border'></div>
                     </div>
                 </div>
@@ -147,11 +147,11 @@ export default function EntityNode({ data, id }: NodeProps<EntityNodeProps>) {
                 <div className='flex gap-2 mt-2'>
 
                     <Button onClick={deleteNode} className='w-full mt-2 bg-transparent text-red-600 border border-red-700'>
-                        <Trash2Icon className='h-4 '/> Delete
+                        <Trash2Icon className='h-4 ' /> Delete
                     </Button>
                     <Button onClick={onOpenChange} className='w-full mt-2'>
                         {data.open ? <ShrinkIcon size={20} /> : <ExpandIcon size={20} />}
-                    </Button>   
+                    </Button>
                 </div>
             </div>
             <Handle type="source" position={Position.Bottom} id="a" />
