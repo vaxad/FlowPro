@@ -182,3 +182,8 @@ async def convert_brd_to_schema(file: UploadFile) -> dict:
     
     os.remove(temp_file_path)
     return chain.invoke({"text" : chunks})
+
+async def convert_query_to_schema(query):
+    chain = SCHEMA_PROMPT | openai_llm | OutputFixingParser.from_llm(parser=JsonOutputParser(pydantic_object=DatabaseSchema),llm=openai_llm)
+
+    return chain.invoke({"text" : query})

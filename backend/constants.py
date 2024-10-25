@@ -75,7 +75,7 @@ Analyze the following text and create a database schema in JSON format following
 
 Text content:
 {text}
-
+There should be no primary key or foreign key in the schema.
 Generate a comprehensive database schema based on the entities and relationships identified in the text.
 """
 )
