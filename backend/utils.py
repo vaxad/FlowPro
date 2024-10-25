@@ -1,6 +1,15 @@
-import ast
+from backend.models import DatabaseSchema, ModuleNode, SymbolNode, SymbolDependencyEdge, ModuleDependencyEdge
+from backend.constants import text_splitter, openai_llm, SCHEMA_PROMPT
+from langchain.chains import LLMChain
+from langchain.output_parsers.json import SimpleJsonOutputParser
+from langchain_core.output_parsers import JsonOutputParser
+from langchain.output_parsers import OutputFixingParser
 from typing import Optional
-from backend.models import ModuleNode, SymbolNode, SymbolDependencyEdge, ModuleDependencyEdge
+from fastapi import UploadFile
+from langchain_community.document_loaders import PyPDFLoader
+from langchain.prompts import PromptTemplate
+import ast
+import os
 
 def parse_symbol_from_source(source_code: str, symbol_name: str) -> tuple[Optional[str], Optional[str]]:
     try:
@@ -141,3 +150,35 @@ def update_symbol_embeddings(tx, symbol_name: str, symbol_module_path: str, embe
            symbolName=symbol_name, 
            symbolModulePath=symbol_module_path, 
            embeddings=embeddings)
+    
+def get_conversational_chain():
+    prompt_template = """
+    Answer the question as detailed as possible from the provided context, make sure to provide all the details, if the answer is not in
+    provided context just say, "answer is not available in the context", don't provide the wrong answer\n\n
+    Context:\n {context}?\n
+    Question: \n{question}\n
+
+    Answer:
+    """
+    prompt = PromptTemplate(
+        template=prompt_template, input_variables=["context", "question"]
+    )
+    chain = LLMChain(llm=openai_llm, prompt=prompt, output_parser=SimpleJsonOutputParser())
+    return chain
+
+async def convert_brd_to_schema(file: UploadFile) -> dict:
+    temp_file_path = f"temp_{file.filename}"
+    with open(temp_file_path, "wb") as temp_file:
+        content = await file.read()
+        temp_file.write(content)
+
+    loader = PyPDFLoader(temp_file_path)
+    pages = loader.load()
+    
+    text = " ".join([page.page_content for page in pages])
+    chunks = text_splitter.split_text(text)
+    
+    chain = SCHEMA_PROMPT | openai_llm | OutputFixingParser.from_llm(parser=JsonOutputParser(pydantic_object=DatabaseSchema),llm=openai_llm)
+    
+    os.remove(temp_file_path)
+    return chain.invoke({"text" : chunks})

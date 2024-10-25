@@ -1,9 +1,11 @@
-from fastapi import FastAPI, HTTPException
+from typing import Dict
+from fastapi import FastAPI, HTTPException, File, UploadFile
 from backend.models import EmbeddingsResponse, GraphData
 from backend.constants import cypher_chain, embeddings_model
 from backend.models import QueryRequest
 from backend.constants import driver, rag
-from backend.utils import add_module_node, add_package_exports, add_symbol_node, add_symbol_dependency_edge, add_module_dependency_edge, add_symbol_source_code_node, clear_graph, update_module_embeddings, update_symbol_embeddings
+from backend.utils import add_module_node, add_package_exports, add_symbol_node, add_symbol_dependency_edge, add_module_dependency_edge, add_symbol_source_code_node, clear_graph, convert_brd_to_schema, update_module_embeddings, update_symbol_embeddings
+
 
 app = FastAPI()
 
@@ -198,7 +200,15 @@ async def add_indexes():
         return {"message": "add_indexes data added successfully"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-      
+
+@app.post("/generate_schema")
+async def generate_schema(file: UploadFile = File(...)) -> Dict:
+    try:
+        res = await convert_brd_to_schema(file)
+        return res
+    except Exception as e:
+        return {"error": str(e)}
+          
 @app.post("/cypher_query")
 async def handle_query(request: QueryRequest):
     try:
@@ -215,7 +225,11 @@ async def nlp(request: QueryRequest):
         return {"result": response.answer}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-        
+    
+@app.get("/")
+async def health_check():
+    return {"status": "healthy"}
+    
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="127.0.0.1", port=5000, debug=True)

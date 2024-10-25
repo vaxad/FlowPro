@@ -33,3 +33,24 @@ class QueryRequest(BaseModel):
 class EmbeddingsResponse(BaseModel):
     message: str
     processed_count: int
+    
+class Attribute(BaseModel):
+    name: str
+    type: str
+
+class Entity(BaseModel):
+    name: str
+    attributes: List[Attribute]
+
+class Relation(BaseModel):
+    from_: str
+    to: str
+    type: str
+    name: str
+
+class DatabaseSchema(BaseModel):
+    name: str
+    description: str
+    entities: List[Entity]
+    relations: List[Relation]
+    auth: bool
