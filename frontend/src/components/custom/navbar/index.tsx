@@ -12,8 +12,12 @@ export default function navbar() {
             href: "/"
         },
         {
-            name: "Create",
+            name: "ERD",
             href: "/create"
+        },
+        {
+            name: "Prompt",
+            href: "/prompt"
         },
         {
             name: "Docs",
