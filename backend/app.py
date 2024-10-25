@@ -1,13 +1,22 @@
-from typing import Dict
-from fastapi import FastAPI, HTTPException, File, UploadFile
 from backend.models import EmbeddingsResponse, GraphData
 from backend.constants import cypher_chain, embeddings_model
 from backend.models import QueryRequest
 from backend.constants import driver, rag
 from backend.utils import add_module_node, add_package_exports, add_symbol_node, add_symbol_dependency_edge, add_module_dependency_edge, add_symbol_source_code_node, clear_graph, convert_brd_to_schema, update_module_embeddings, update_symbol_embeddings
+from typing import Dict
+from fastapi import FastAPI, HTTPException, File, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 @app.post("/add_nodes")
 async def add_nodes(graph_data: GraphData):
