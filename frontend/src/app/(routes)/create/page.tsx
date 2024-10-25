@@ -3,12 +3,12 @@ import Flow from "@/components/custom/flow"
 import GenerateForm from "@/components/custom/generate-form"
 import Json from "@/components/custom/json";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { useGenerateForm } from "@/lib/hooks/form";
+import { useFormContext } from "@/lib/context/form";
 
 export default function Page() {
-    const form = useGenerateForm()
+    const { form } = useFormContext();
     return (
-        <Tabs defaultValue="flow" className="mt-4">
+        <Tabs defaultValue="flow" className="mt-4 mx-10 md:mx-20">
             <TabsList>
                 <TabsTrigger value="flow">Flow</TabsTrigger>
                 <TabsTrigger value="form">Form</TabsTrigger>

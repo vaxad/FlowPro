@@ -1,12 +1,12 @@
 import { create } from 'zustand';
 import { GenerateFormData } from '../types/generate-form';
 
-interface CounterState {
+interface FormState {
   form: GenerateFormData;
   setForm: (form: GenerateFormData) => void;
 }
 
-const useCounterStore = create<CounterState>((set) => ({
+const useFormStore = create<FormState>((set) => ({
   form: {
     name: "",
     description: "",
@@ -19,4 +19,4 @@ const useCounterStore = create<CounterState>((set) => ({
   }
 }));
 
-export default useCounterStore;
+export default useFormStore;

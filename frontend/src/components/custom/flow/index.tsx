@@ -14,6 +14,7 @@ import { generateProjectFolder } from '@/lib/utils';
 import DownloadButton from './download-button';
 import Toolbar from './toolbar';
 import { UseFormReturn } from 'react-hook-form';
+import { FaWandMagicSparkles } from "react-icons/fa6";
 
 const defaultInitialNodes: EntityNodeProps[] = [
     { id: '1', position: { x: 10, y: 10 }, data: { name: '', attributes: [{ name: "", type: "string" }], open: true }, type: 'entity' },
@@ -134,7 +135,7 @@ export default function Flow({ form }: FlowProps) {
 
     return (
         <>
-            <div className='w-full relative flex-grow bg-purple-400/20 h-[80vh] rounded mt-4'>
+            <div className='w-full relative flex-grow bg-transparent border h-[80vh] rounded mt-4'>
                 <ReactFlow
                     nodes={nodes}
                     edges={edges}
@@ -155,7 +156,9 @@ export default function Flow({ form }: FlowProps) {
                     <Label className="text-xl font-semibold">Authentication:</Label>
                     <Switch checked={auth} onCheckedChange={() => { setAuth((prev) => !prev) }} />
                 </div>
-                <Button onClick={generateProject} type="button">Generate Project</Button>
+                <Button onClick={generateProject} type="button" className='text-white gap-2 bg-gradient-to-r from-purple-500 to-pink-500 border'>Generate Project <FaWandMagicSparkles />
+
+                </Button>
             </div>
         </>
     )

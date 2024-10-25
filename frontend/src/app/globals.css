@@ -74,15 +74,71 @@ input{
   }
   body {
     @apply bg-background text-foreground;
+    --light: hsl(0 0% 100%);
+  --dark: hsl(240 100% 5%);
+  --circleColor: var(--light);
+/*   --circleColor: var(--dark); */
+  --linearOne: #624dce;
+  --linearTwo: #e0686c;
+  --linearThree: #99579f;
   }
 }
 
 #rootBody {
   margin-inline: auto !important; 
-  padding-inline: 1.5rem !important;
+  /* padding-inline: 1.5rem !important; */
 }
 
 html {
   scroll-margin-block-start: 0;
   scroll-behavior: smooth;
+}
+
+.bgGrad{
+  background: linear-gradient(178deg, #000 2%, rgba(109, 0, 249, 0.89) 40.7%, rgba(144, 57, 255, 0.94) 70.14%, rgb(239, 227, 255) 99.34%);
+  filter: blur(51.849998474121094px);
+}
+
+.rectFilter{
+  background: linear-gradient(178deg, #ffffff 2%, rgba(109, 0, 249, 0.89) 40.7%, rgba(144, 57, 255, 0.94) 70.14%, rgb(239, 227, 255) 99.34%);
+  border-radius: 50%;
+}
+
+.dividerWrapper {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 100%;
+  
+  > * {
+    grid-area: 1/-1;
+  }
+}
+
+.dividerWrapper > div:first-child {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+/*   background-color: hsl(274, 100%, 77%, 25%); */
+  filter: blur(15px);
+  background-image: radial-gradient(farthest-side, hsl(256, 85%, 57%), transparent);
+}
+
+.dividerWrapper > div:nth-child(2) {
+  width: 3px;
+  height: 100%;
+  border-radius: 100%;
+  filter: blur(0.5px);
+  background-image: linear-gradient(transparent, hsl(300, 100%, 88%), transparent);
+/*   box-shadow: 0 0 0 3px hsl(0 0% 100% / 5%); */
+}
+
+.dividerWrapper > div:last-child {
+  width: 5px;
+  height: 35%;
+/*   background-color: hsl(300, 100%, 88%); */
+  background-image: linear-gradient(to right, transparent, hsl(300, 100%, 88%), transparent);
+  background-image: radial-gradient(hsl(300, 100%, 88%) 25%, transparent);
+  filter: blur(1px);
+  border-radius: 100%;
 }

@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Space_Grotesk } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 import Navbar from "@/components/custom/navbar";
 import { BackgroundBeamsWithCollision } from "@/components/ui/bg-beams";
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "sonner";
+import { FormProvider } from "@/lib/context/form";
 
-const font = Space_Grotesk({
+const font = Poppins({
   subsets: ['latin'],
+  weight: ["400", "500", "600", "700"],
 });
 export const metadata: Metadata = {
   title: "FlowPI",
@@ -22,18 +24,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${font.className} antialiased min-h-screen`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Toaster />
-          <BackgroundBeamsWithCollision className="w-full h-full">
-            <Navbar />
-            {children}
-          </BackgroundBeamsWithCollision>
-        </ThemeProvider>
+        <FormProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Toaster />
+            <BackgroundBeamsWithCollision className="w-full h-full">
+              <Navbar />
+              {children}
+            </BackgroundBeamsWithCollision>
+          </ThemeProvider>
+        </FormProvider>
       </body>
     </html>
   );
