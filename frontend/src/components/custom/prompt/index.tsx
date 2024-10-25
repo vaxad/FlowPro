@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
@@ -20,6 +20,16 @@ const formSchema = z.object({
     }),
 })
 
+const fn = async () => {
+    try {
+        const res = await fetch("/api/frontend", {
+            method: "POST",
+        })
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 export default function QueryForm() {
     const [file, setFile] = useState<File | null>(null)
     const { form: formContext } = useFormContext();
@@ -31,6 +41,11 @@ export default function QueryForm() {
             query: "",
         },
     })
+
+    useEffect(() => {
+        fn()
+    }, [])
+
 
     async function handleFile(file: File | null) {
         if (!file) return console.error('No file selected')

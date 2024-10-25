@@ -77,7 +77,7 @@ entities.forEach((entity: Entity) => {
       .forEach((relation) => {
         prismaSchema += `  ${generateRelationField(relation)}\n`;
       });
-
+    prismaSchema += "   fpca DateTime @default(now())\n";
     prismaSchema += '}\n\n';
   });
 
