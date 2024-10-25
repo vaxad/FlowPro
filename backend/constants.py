@@ -16,6 +16,8 @@ NEO4J_URI = os.getenv("NEO4J_URI")
 NEO4J_USER = os.getenv("NEO4J_USER")
 NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
 
+print(NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD)
+
 driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
 embeddings_model = OpenAIEmbeddings()
 graph = Neo4jGraph(
@@ -77,6 +79,61 @@ Text content:
 {text}
 There should be no primary key or foreign key in the schema.
 Generate a comprehensive database schema based on the entities and relationships identified in the text.
+"""
+)
+
+JS_PARSER = ChatPromptTemplate.from_template("""
+Analyze the following code and create dependency graph schema in JSON format following this structure:
+{{
+    "moduleDependencyEdges": [
+        {{
+            "dependentModulePath": "STRING",   // Path of the module that depends on another module
+            "dependencyModulePath": "STRING"   // Path of the module being depended on
+        }}, 
+        {{
+            "dependentModulePath": "STRING",   // Path of the module that depends on another module
+            "dependencyModulePath": "STRING"   // Path of the module being depended on
+        }}  
+    ],
+    "moduleNodes": [
+        {{
+            "moduleName": "STRING",           // Name of the module
+            "modulePath": "STRING",           // File path of the module in the codebase
+            "moduleSourceCode": "STRING"      // Source code for the module
+        }},
+        {{
+            "moduleName": "STRING",           // Name of the module
+            "modulePath": "STRING",           // File path of the module in the codebase
+            "moduleSourceCode": "STRING"      // Source code for the module
+        }}
+    ],
+    "symbolDependencyEdges": [
+        {{
+            "dependentModulePath": "STRING",   // Path of the module that depends on a symbol
+            "dependencySymbolPath": "STRING",  // Path of the module where the symbol is defined
+            "dependencySymbolName": "STRING"   // Name of the symbol that is depended on
+        }},
+        {{
+            "dependentModulePath": "STRING",   // Path of the module that depends on a symbol
+            "dependencySymbolPath": "STRING",  // Path of the module where the symbol is defined
+            "dependencySymbolName": "STRING"   // Name of the symbol that is depended on
+        }}
+    ],
+    "symbolNodes": [
+        {{
+            "symbolModulePath": "STRING",       // Path of the module where the symbol is located
+            "symbolName": "STRING"              // Name of the symbol
+        }},
+        {{
+            "symbolModulePath": "STRING",       // Path of the module where the symbol is located
+            "symbolName": "STRING"              // Name of the symbol
+        }}
+    ]
+}}
+
+Text content:
+{text}
+Generate a comprehensive dependency graph schema based on the entities and relationships identified in the code.
 """
 )
 

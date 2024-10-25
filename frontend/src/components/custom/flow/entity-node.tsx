@@ -144,7 +144,7 @@ export default function EntityNode({ data, id }: NodeProps<EntityNodeProps>) {
 
                     <div className='grid grid-cols-3 items-center justify-center my-3' >
                         <div className='w-full  border'></div>
-                        <div className='text-center text-sm rounded-lg border bg-white text-black font-medium px-2 py-1 cursor-pointer'  onClick={onAddAttribute}>+ Add More</div>
+                        <div className='text-center text-sm rounded-lg border bg-white text-black font-medium px-2 py-1 cursor-pointer' onClick={onAddAttribute}>+ Add More</div>
                         <div className='w-full  border'></div>
                     </div>
                 </div>

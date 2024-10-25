@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select';
 import { relationTypes } from '@/lib/maps/project';
 import { BaseEdge, Edge, EdgeLabelRenderer, EdgeProps, getBezierPath, useReactFlow } from '@xyflow/react';
-import { Trash, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import React from 'react';
 
 export type RelationEdgeProps = Edge<{
