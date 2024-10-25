@@ -15,11 +15,11 @@ import DownloadButton from './download-button';
 import Toolbar from './toolbar';
 import { UseFormReturn } from 'react-hook-form';
 
-const initialNodes: EntityNodeProps[] = [
+const defaultInitialNodes: EntityNodeProps[] = [
     { id: '1', position: { x: 10, y: 10 }, data: { name: '', attributes: [{ name: "", type: "string" }], open: true }, type: 'entity' },
     { id: '2', position: { x: 400, y: 400 }, data: { name: '', attributes: [{ name: "", type: "string" }], open: true }, type: 'entity' },
 ];
-const initialEdges: RelationEdgeProps[] = [{ id: 'e1-2', source: '1', target: '2', type: "relation", data: { type: "1-m" } }];
+const defaultInitialEdges: RelationEdgeProps[] = [{ id: 'e1-2', source: '1', target: '2', type: "relation", data: { type: "1-m" } }];
 
 const edgeTypes = {
     'relation': RelationEdge
@@ -35,6 +35,28 @@ interface FlowProps {
 }
 
 export default function Flow({ form }: FlowProps) {
+    const initialNodes: EntityNodeProps[] = form && form.getValues("entities").length
+        ? form.getValues("entities").map((entity, index) => ({
+            id: index.toString(),
+            position: { x: 100 + index * 300, y: 100 + index * 300 },
+            data: { name: entity.name, attributes: entity.attributes, open: true },
+            type: "entity",
+        }))
+        : defaultInitialNodes;
+    const initialEdges: RelationEdgeProps[] = form && form.getValues("relations").length ?
+        form.getValues("relations").map((relation, index) => {
+            const source = initialNodes.find((node) => node.data.name === relation.from)?.id;
+            const target = initialNodes.find((node) => node.data.name === relation.to)?.id;
+            if (!source || !target) return false;
+            return {
+                id: index.toString(),
+                source,
+                target,
+                type: "relation" as const,
+                data: { type: relation.type }
+            }
+        }).filter((relation) => !!relation) : defaultInitialEdges;
+
     const [nodes, , onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
