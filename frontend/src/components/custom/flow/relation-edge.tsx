@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select';
 import { relationTypes } from '@/lib/maps/project';
 import { BaseEdge, Edge, EdgeLabelRenderer, EdgeProps, getBezierPath, useReactFlow } from '@xyflow/react';
-import { Trash } from 'lucide-react';
+import { Trash, X } from 'lucide-react';
 import React from 'react';
 
 export type RelationEdgeProps = Edge<{
@@ -49,7 +49,7 @@ export default function RelationEdge({
                     style={{
                         transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
                     }}
-                    className="nodrag nopan absolute pointer-events-auto flex border-foreground border bg-background rounded p-1 gap-1"
+                    className="nodrag nopan absolute pointer-events-auto flex border-foreground  bg-background rounded p-3 gap-1"
                 >
                     <Select value={String(data?.type)} defaultValue={relationTypes[0]} onValueChange={onValueChange}  >
                         <SelectTrigger>
@@ -60,8 +60,8 @@ export default function RelationEdge({
                                 (<SelectItem key={`relation-type-select-${idx}`} value={String(relType)}>{String(relType)}</SelectItem>))}
                         </SelectContent>
                     </Select>
-                    <Button variant="destructive" className='aspect-square' onClick={deleteEdge}>
-                        <Trash />
+                    <Button variant="destructive" className='bg-white/10' onClick={deleteEdge}>
+                        <X />
                     </Button>
                 </div>
             </EdgeLabelRenderer>

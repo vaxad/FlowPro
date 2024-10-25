@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Space_Grotesk } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 import Navbar from "@/components/custom/navbar";
 import { BackgroundBeamsWithCollision } from "@/components/ui/bg-beams";
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "sonner";
 
-const font = Space_Grotesk({
+const font = Poppins({
   subsets: ['latin'],
+  weight: ["400", "500", "600", "700"],
 });
 export const metadata: Metadata = {
   title: "FlowPI",

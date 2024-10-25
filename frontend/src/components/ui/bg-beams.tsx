@@ -83,7 +83,7 @@ export const BackgroundBeamsWithCollision = ({
                     parentRef={parentRef}
                 />
             ))}
-            <div id="rootBody" className="min-h-screen flex flex-col max-w-7xl w-full z-50 pb-12">
+            <div id="rootBody" className="min-h-screen flex flex-col w-full z-50 pb-12">
                 {children}
             </div>
             <div

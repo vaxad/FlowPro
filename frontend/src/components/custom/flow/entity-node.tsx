@@ -116,7 +116,7 @@ export default function EntityNode({ data, id }: NodeProps<EntityNodeProps>) {
     return (
         <>
             <Handle type="target" position={Position.Top} />
-            <div className='border border-foreground rounded p-1 bg-background'>
+            <div className='border border-gray-600 rounded-xl p-3 bg-gradient-to-b from-[#150031] to-[#07010F]'>
                 <Input className='font-semibold' placeholder='Entity Name' name="name" variant='underlined' value={data.name} onChange={onChange} />
                 {data.open && <div className='mt-2 flex flex-col gap-2'>
                     {data.attributes.map((attr, index) => (
@@ -130,22 +130,28 @@ export default function EntityNode({ data, id }: NodeProps<EntityNodeProps>) {
                                     {attributeTypes.map((attrType, idx) => (<SelectItem key={`attribute-type-select-${idx}`} value={String(attrType)}>{String(attrType)}</SelectItem>))}
                                 </SelectContent>
                             </Select>
-                            <Button variant="destructive" onClick={() => onRemoveAttribute(index)}>
+                            <Button variant="destructive" className='bg-white/10' onClick={() => onRemoveAttribute(index)}>
                                 <Trash2Icon size={20} />
                             </Button>
                         </div>
                     ))}
-                    <Button onClick={onAddAttribute} className='w-full col-span-2 mt-2'><PlusIcon size={20} /></Button>
+                    {/* <Button onClick={onAddAttribute} className='w-full col-span-2 mt-2'><PlusIcon size={20} /></Button> */}
+
+                    <div className='grid grid-cols-3 items-center justify-center my-3' >
+                        <div className='w-full  border'></div>
+                        <div className='text-center text-sm rounded-lg border bg-white text-black font-medium px-2 py-1 cursor-pointer'  onClick={onAddAttribute}>+ Add More</div>
+                        <div className='w-full  border'></div>
+                    </div>
                 </div>
                 }
                 <div className='flex gap-2 mt-2'>
 
+                    <Button onClick={deleteNode} className='w-full mt-2 bg-transparent text-red-600 border border-red-700'>
+                        <Trash2Icon className='h-4 '/> Delete
+                    </Button>
                     <Button onClick={onOpenChange} className='w-full mt-2'>
                         {data.open ? <ShrinkIcon size={20} /> : <ExpandIcon size={20} />}
-                    </Button>
-                    <Button variant="destructive" onClick={deleteNode} className='w-full mt-2'>
-                        <Trash2Icon />
-                    </Button>
+                    </Button>   
                 </div>
             </div>
             <Handle type="source" position={Position.Bottom} id="a" />

@@ -8,7 +8,7 @@ import { useGenerateForm } from "@/lib/hooks/form";
 export default function Page() {
     const form = useGenerateForm()
     return (
-        <Tabs defaultValue="flow" className="mt-4">
+        <Tabs defaultValue="flow" className="mt-4 mx-10 md:mx-20">
             <TabsList>
                 <TabsTrigger value="flow">Flow</TabsTrigger>
                 <TabsTrigger value="form">Form</TabsTrigger>
