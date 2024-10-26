@@ -1,7 +1,7 @@
 "use client"
 import React from "react";
 import { ModeToggle } from "@/components/mode-toggle";
-import all from "@/lib/entities";
+import * as all from "@/lib/entities";
 import { SelectMap } from "@/components/select";
 import { useRouter } from "next/navigation";
 
@@ -15,7 +15,7 @@ export default function navbar() {
   const router = useRouter();
   const onChange = (name: string) => {
     setActive(name);
-    router.push(`/${name === "home" ? "" : name}`);
+    router.push(`/${name.toLowerCase() === "home" ? "" : name.toLowerCase()}`);
   }
   return (
     <>
