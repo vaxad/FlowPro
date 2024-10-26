@@ -1,3 +1,4 @@
+from urllib import response
 from backend.models import EmbeddingsResponse, GraphData
 from backend.constants import cypher_chain, embeddings_model
 from backend.models import QueryRequest
@@ -238,7 +239,7 @@ async def query_schema(request: QueryRequest):
         return {"error": str(e)}
           
 @app.post("/cypher_query")
-async def handle_query(request: QueryRequest):
+async def cypher_query(request: QueryRequest):
     try:
         response = cypher_chain.invoke({"query": request.query})
         return response
@@ -254,6 +255,23 @@ async def nlp(request: QueryRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
+@app.post("/understanding_symbols")
+async def understanding_symbols(request: QueryRequest):
+    try:
+        result = cypher_chain.invoke({"query": request.query})
+        full_response = ""
+        for record in result["result"].replace(".","").replace(" ","").split(","):
+            print(record)
+            if record!="":
+                query_text = f"I can't understand a bit about {record} file can you please explain me all the symbols associated with utils.py file and explain in detail"
+                response = rag.search(query_text=query_text, retriever_config={"top_k": 5})
+                full_response += response.answer
+                print(full_response)
+        return {"result": full_response}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/")
 async def health_check():
     return {"status": "healthy"}
