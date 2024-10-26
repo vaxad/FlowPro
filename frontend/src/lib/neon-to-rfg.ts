@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { GraphData, Node, Link } from "@/lib/types/graph"
 
 export function neo4jToRFG(data: any): GraphData {

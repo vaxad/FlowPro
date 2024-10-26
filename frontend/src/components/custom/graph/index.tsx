@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars*/
 "use client";
 import { ForceGraph2D } from 'react-force-graph';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { GraphData, Node, Link } from '@/lib/types/graph';
 function Graph({ graphData }: { graphData: GraphData }) {
     const [height, _] = useState(window.innerHeight - 100);
