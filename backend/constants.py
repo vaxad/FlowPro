@@ -37,10 +37,10 @@ cypher_chain = GraphCypherQAChain.from_llm(
 
 retriever = HybridRetriever(
     driver=driver,
-    vector_index_name="symbolEmbeddings",
-    fulltext_index_name="symbolFullText",
+    vector_index_name="moduleEmdeddings",
+    fulltext_index_name="moduleFullText",
     embedder=embeddings_model,
-    return_properties=["symbolCode", "symbolName","symbolModulePath","symbolType"],
+    return_properties=["moduleSourceCode", "moduleName","modulePath"],
 )
 
 llm = OpenAILLM(model_name="gpt-4o", model_params={"temperature": 0})
@@ -48,44 +48,44 @@ rag = GraphRAG(retriever=retriever, llm=llm)
 
 SCHEMA_PROMPT = ChatPromptTemplate.from_template("""
 Analyze the following text and create a JSON-format database schema using this structure:
-{
+{{
     "name": "Generated Schema",
     "description": "Schema generated from PDF content",
     "entities": [
-        {
+        {{
             "name": "entity_name",
             "attributes": [
-                {
+                {{
                     "name": "attribute_name",
                     "type": "attribute_type",
-                    "constraint": {
+                    "constraint": {{
                         "value": "constraint_value",
                         "type": "constraint_type"
-                    }
-                }
+                    }}
+                }}
             ]
-        }
+        }}
     ],
     "relations": [
-        {
+        {{
             "from": "entity_name",
             "to": "related_entity",
             "type": "1-?1 | 1-m | m-1 | 1?-1",
             "name": "relation_name",
             "attributes": [
-                {
+                {{
                     "name": "attribute_name",
                     "type": "attribute_type",
-                    "constraint": {
+                    "constraint": {{
                         "value": "constraint_value",
                         "type": "constraint_type"
-                    }
-                }
+                    }}
+                }}
             ]
-        }
+        }}
     ],
     "auth": true
-}
+}}
 
 Text content:
 {text}
