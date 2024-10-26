@@ -183,11 +183,14 @@ async def create_fulltext_indexes():
 @app.post("/add_graph")
 async def add_graph(graph_data: GraphData):
     try:
+        print(type(graph_data))
         print(await add_nodes(graph_data))
         print(await add_exports(graph_data))
         print(await add_module_dependency(graph_data))
         print(await add_symbol_dependency(graph_data))
         print(await add_nodes_source_code(graph_data))
+        print(await add_embeddings())
+        print(await add_indexes())
         return {"message": "add_graph data added successfully"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

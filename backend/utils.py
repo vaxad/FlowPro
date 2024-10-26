@@ -195,38 +195,30 @@ async def convert_query_to_schema(query):
 async def convert_zip_to_graph(file: UploadFile) -> dict:
     temp_zip_path = f"temp_{file.filename}"
     temp_extract_path = Path("temp_extract")
-    combined_text_path = "combined_text.txt"  # File to save the concatenated content
 
-    # Save the uploaded file temporarily
     with open(temp_zip_path, "wb") as temp_file:
         content = await file.read()
         temp_file.write(content)
 
-    # Unzip the contents
     with zipfile.ZipFile(temp_zip_path, 'r') as zip_ref:
         zip_ref.extractall(temp_extract_path)
 
-    # Iterate through files to create `text` string
     text = ""
     for path in temp_extract_path.rglob("*"):
-        if path.is_file() and path.suffix in {".js", ".json", ".md", ".txt"}:  # Add other extensions if needed
+        if path.is_file() and path.suffix in {".js", ".json", ".md", ".txt"}:  
             relative_path = path.relative_to(temp_extract_path)
             with open(path, "r", encoding="utf-8") as f:
                 file_content = f.read()
             text += f"\n\n---\nFile: {relative_path}\n\n{file_content}\n\n"
 
-    # Write `text` to a file
-    with open(combined_text_path, "w", encoding="utf-8") as combined_file:
-        combined_file.write(text)
-
-    # Split text into chunks and convert to schema
+    print(text)
+    
     chunks = text_splitter.split_text(text)
     chain = JS_PARSER | openai_llm | OutputFixingParser.from_llm(
         parser=JsonOutputParser(pydantic_object=GraphData), llm=openai_llm
     )
 
-    # Clean up temporary files and directories
     os.remove(temp_zip_path)
-    shutil.rmtree(temp_extract_path)  # Safely remove the directory and its contents
+    shutil.rmtree(temp_extract_path)  
 
     return chain.invoke({"text": chunks})
