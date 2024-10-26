@@ -3,7 +3,7 @@ from backend.models import EmbeddingsResponse, GraphData
 from backend.constants import cypher_chain, embeddings_model
 from backend.models import QueryRequest
 from backend.constants import driver, rag
-from backend.utils import add_module_node, add_package_exports, add_symbol_node, add_symbol_dependency_edge, add_module_dependency_edge, add_symbol_source_code_node, clear_graph, convert_brd_to_schema, convert_query_to_schema, convert_zip_to_graph, update_module_embeddings, update_symbol_embeddings
+from backend.utils import add_module_node, add_package_exports, add_symbol_node, add_symbol_dependency_edge, add_module_dependency_edge, add_symbol_source_code_node, clear_graph, convert_brd_to_schema, convert_query_to_schema, convert_zip_to_graph, filter_properties, update_module_embeddings, update_symbol_embeddings
 from typing import Dict
 from fastapi import FastAPI, HTTPException, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -271,6 +271,43 @@ async def understanding_symbols(request: QueryRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get("/get_graph_data")
+async def get_graph_data():
+    try:
+        with driver.session() as session:
+            result = session.run("MATCH p=()-[]->() RETURN p LIMIT 1000")
+            
+            nodes = set()
+            edges = []
+            nodes_data = []
+            edges_data = []
+
+            for record in result:
+                path = record["p"]
+                for node in path.nodes:
+                    if node.id not in nodes:
+                        nodes.add(node.id)
+                        node_data = {
+                            "id": node.id,
+                            "labels": list(node.labels),
+                            "properties": filter_properties(dict(node))
+                        }
+                        nodes_data.append(node_data)
+                
+                for rel in path.relationships:
+                    edge_data = {
+                        "id": rel.id,
+                        "source": rel.start_node.id,
+                        "target": rel.end_node.id,
+                        "type": rel.type,
+                        "properties": dict(rel)
+                    }
+                    edges_data.append(edge_data)
+
+            return {"nodes": nodes_data, "edges": edges_data}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/")
 async def health_check():

@@ -47,36 +47,54 @@ llm = OpenAILLM(model_name="gpt-4o", model_params={"temperature": 0})
 rag = GraphRAG(retriever=retriever, llm=llm)
 
 SCHEMA_PROMPT = ChatPromptTemplate.from_template("""
-Analyze the following text and create a database schema in JSON format following this structure:
-{{
+Analyze the following text and create a JSON-format database schema using this structure:
+{
     "name": "Generated Schema",
     "description": "Schema generated from PDF content",
     "entities": [
-        {{
+        {
             "name": "entity_name",
             "attributes": [
-                {{
+                {
                     "name": "attribute_name",
-                    "type": "attribute_type"
-                }}
+                    "type": "attribute_type",
+                    "constraint": {
+                        "value": "constraint_value",
+                        "type": "constraint_type"
+                    }
+                }
             ]
-        }}
+        }
     ],
     "relations": [
-        {{
+        {
             "from": "entity_name",
             "to": "related_entity",
-            "type": "1-m",
-            "name": "relation_name"
-        }}
+            "type": "1-?1 | 1-m | m-1 | 1?-1",
+            "name": "relation_name",
+            "attributes": [
+                {
+                    "name": "attribute_name",
+                    "type": "attribute_type",
+                    "constraint": {
+                        "value": "constraint_value",
+                        "type": "constraint_type"
+                    }
+                }
+            ]
+        }
     ],
     "auth": true
-}}
+}
 
 Text content:
 {text}
-There should be no primary key or foreign key in the schema.
-Generate a comprehensive database schema based on the entities and relationships identified in the text.
+
+Guidelines:
+- `attribute_type` is limited to the following: "string", "number", "boolean", "Date"".
+- `constraint_type` options include: "required", "unique", "optional", or "default".
+- Avoid including primary or foreign keys in the schema.
+- Generate a comprehensive database schema based on the entities and relationships identified in the text.
 """
 )
 

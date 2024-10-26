@@ -1,5 +1,5 @@
+from typing import List, Optional, Literal
 from pydantic import BaseModel
-from typing import List, Optional
 
 class ModuleNode(BaseModel):
     moduleName: str
@@ -34,9 +34,14 @@ class EmbeddingsResponse(BaseModel):
     message: str
     processed_count: int
     
+class Constraint(BaseModel):
+    value: Optional[str] = None
+    type: Literal["required", "unique", "optional", "default"]
+
 class Attribute(BaseModel):
     name: str
-    type: str
+    type: Literal["string", "number", "boolean", "Date"]
+    constraint: Optional[Constraint] = None
 
 class Entity(BaseModel):
     name: str
@@ -45,8 +50,9 @@ class Entity(BaseModel):
 class Relation(BaseModel):
     from_: str
     to: str
-    type: str
+    type: Literal["1-?1", "1-m", "m-1", "1?-1"]
     name: str
+    attributes: Optional[List[Attribute]] = None
 
 class DatabaseSchema(BaseModel):
     name: str

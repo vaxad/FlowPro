@@ -222,3 +222,7 @@ async def convert_zip_to_graph(file: UploadFile) -> dict:
     shutil.rmtree(temp_extract_path)  
 
     return chain.invoke({"text": chunks})
+
+def filter_properties(properties: dict) -> dict:
+    """Filter out moduleSourceCodeEmbeddings from properties"""
+    return {k: v for k, v in properties.items() if k != 'moduleSourceCodeEmbeddings'}
