@@ -54,4 +54,4 @@ export const placeholderData: GenerateFormData =
     ]
 }
 
-export const FLASK_API = "https://f3r2nbk3-8000.inc1.devtunnels.ms";
+export const FLASK_API = "https://flowpro-65lw.onrender.com";
