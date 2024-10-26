@@ -40,7 +40,7 @@ export default function Landing() {
             </div>
 
             <div className="z-10">
-            <div className="chipsWrapper2 w-fit mx-auto mb-4">
+              <div className="chipsWrapper2 w-fit mx-auto mb-4">
                 <span className="chip2 backdrop-blur-md">Prompts</span>
                 <div className="linkWrapper2">
                   <div className="link2"></div>
@@ -53,7 +53,7 @@ export default function Landing() {
                 </div>
                 <span className="chip2 backdrop-blur-md" >BRD</span>
               </div>
-              
+
               <h1 className=" text-6xl font-medium pb-4 mx-auto text-center bg-clip-text bg-gradient-to-b from-white to-slate-500 text-transparent ">
                 Built for Laymen.
               </h1>
@@ -101,18 +101,18 @@ export default function Landing() {
             </div>
           </div>
           <div className="chipsWrapper w-fit mx-auto mt-8">
-                <span className="chip backdrop-blur-md">ER Diagram</span>
-                <div className="linkWrapper">
-                  <div className="link"></div>
-                  <div className="switch"></div>
-                </div>
-                <span className="chip active">Code</span>
-                <div className="linkWrapper">
-                  <div className="link"></div>
-                  <div className="switch"></div>
-                </div>
-                <span className="chip backdrop-blur-md">Dependency Graph</span>
-              </div>
+            <span className="chip backdrop-blur-md">ER Diagram</span>
+            <div className="linkWrapper">
+              <div className="link"></div>
+              <div className="switch"></div>
+            </div>
+            <span className="chip active">Code</span>
+            <div className="linkWrapper">
+              <div className="link"></div>
+              <div className="switch"></div>
+            </div>
+            <span className="chip backdrop-blur-md">Dependency Graph</span>
+          </div>
 
           <div className="grid grid-cols-[1fr_auto_1fr] w-full mt-24">
             <div className="">

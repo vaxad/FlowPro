@@ -29,7 +29,7 @@ export default function navbar() {
       <div className="flex w-full px-10  justify-between items-center min-h-14 opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto">
         <div className="flex items-center gap-2 min-w-32">
           <div className="size-6 rounded-full bg-foreground"></div>
-          <h1 className="text-lg font-black">FlowPI</h1>
+          <h1 className="text-lg font-black">FlowPro</h1>
         </div>
         <div className="min-w-32 flex items-center gap-2 justify-end">
           <Link

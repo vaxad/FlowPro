@@ -23,6 +23,7 @@ import DownloadButton from "./download-button";
 import Toolbar from "./toolbar";
 import { UseFormReturn } from "react-hook-form";
 import { FaWandMagicSparkles } from "react-icons/fa6";
+import { useRouter } from "next/navigation";
 
 const defaultInitialNodes: EntityNodeProps[] = [
     {
@@ -102,6 +103,7 @@ export default function Flow({ form }: FlowProps) {
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
     const [auth, setAuth] = React.useState(true);
+    const router = useRouter();
 
     const onConnect = useCallback(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -180,6 +182,7 @@ export default function Flow({ form }: FlowProps) {
             };
 
             await generateProjectFolder(data);
+            router.push("/query");
         } catch (error) {
             console.error(error);
             alert("Something went wrong!");

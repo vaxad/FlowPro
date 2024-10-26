@@ -23,6 +23,7 @@ const formSchema = z.object({
 
 
 export default function QueryForm() {
+    const [loading, setLoading] = useState<boolean>(false);
     const [file, setFile] = useState<File | null>(null)
     const { form: formContext } = useFormContext();
     const router = useRouter()
@@ -37,6 +38,7 @@ export default function QueryForm() {
 
     async function handleFile(file: File | null) {
         if (!file) return console.error('No file selected')
+        setLoading(true)
         try {
             setFile(file)
             const body = new FormData()
@@ -51,13 +53,15 @@ export default function QueryForm() {
             router.push('/create')
         } catch (error) {
             console.error(error)
+        } finally {
+            setLoading(false)
         }
     }
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         // Here you would typically send the form data to your server
         console.log(values, file)
-
+        setLoading(true)
         try {
             const resp = await fetch(`${FLASK_API}/query_schema`, {
                 method: 'POST',
@@ -72,11 +76,13 @@ export default function QueryForm() {
             router.push('/create')
         } catch (error) {
             console.error(error)
+        } finally {
+            setLoading(false)
         }
     }
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen">
+        <div className="flex flex-col items-center justify-center min-h-[calc(100vh-56px)]">
             <div className="py-2 pl-2 pr-4 bg-cyan-400/20 rounded-full mb-2 text-xs text-cyan-300">
                 <span className="bg-cyan-300 text-black text-xs font-semibold px-2 py-0.5 rounded-full mr-2">Error Free!</span>
                 Try this even if you are new to backend.
@@ -95,7 +101,7 @@ export default function QueryForm() {
                                     <FormControl>
                                         <Textarea
                                             placeholder="Enter your query here..."
-                                            className="min-h-[40px] mt-3 resize-none"
+                                            className="min-h-[40px] mt-3 resize-y"
                                             {...field}
                                         />
                                     </FormControl>
@@ -134,6 +140,9 @@ export default function QueryForm() {
                         {/* <Button type="button" onClick={() => onSubmit(form.getValues())} className="w-full">Submit</Button> */}
                     </div>
                 </Form>
+                {!!loading && <div className='bg-background/50 my-4 p-4 rounded-2xl'>
+                    <h4>Loading...</h4>
+                </div>}
             </div>
         </div>
     )
