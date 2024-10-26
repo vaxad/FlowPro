@@ -13,35 +13,40 @@ https://github.com/user-attachments/assets/3a2079df-750e-498d-ae74-9608a988e551
 
 <h2>Project Screenshots:</h2>
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; place-items: center; gap: 0.5rem;">
-    <img src="https://github.com/user-attachments/assets/1c208831-52af-41a3-ac96-c164f17f04b9" alt="Landing Page">
-    <img src="https://github.com/user-attachments/assets/b4d9771b-0e57-431a-bf99-3414299ff349" alt="Home">
-    <img src="https://github.com/user-attachments/assets/77cebb9b-d86f-47cf-b16c-0f1b0bde2714" alt="Video and Transcript" style="height: 100%; object-fit: cover;">
-    <img src="https://github.com/user-attachments/assets/c6dd06cf-0865-4634-9687-ba850837bc66" alt="Quiz">
-    <img src="https://github.com/user-attachments/assets/04945719-87a9-4635-b940-48ea5f0d8cca" alt="Video and Transcript">
-    <img src="https://github.com/user-attachments/assets/7a851a02-5217-4d9a-9091-35b26bdf3ee2" alt="Quiz">
-    <img src="https://github.com/user-attachments/assets/03eed148-47ba-4426-add1-8437f4b2f968" alt="Analytics" style="height: 100%; object-fit: cover;">
-    <img src="https://github.com/user-attachments/assets/f143bbae-8613-4263-8af1-da9003d13f6c" alt="Analytics">
-</div>
-
-<!--<table>-->
-<!--  <tr>-->
-<!--    <td><img src="https://github.com/user-attachments/assets/1c208831-52af-41a3-ac96-c164f17f04b9" alt="Landing Page"></td>-->
-<!--    <td><img src="https://github.com/user-attachments/assets/b4d9771b-0e57-431a-bf99-3414299ff349" alt="Home"></td>-->
-<!--  </tr>-->
-<!--  <tr>-->
-<!--    <td><img src="https://github.com/user-attachments/assets/77cebb9b-d86f-47cf-b16c-0f1b0bde2714" alt="Video and Transcript"></td>-->
-<!--    <td><img src="https://github.com/user-attachments/assets/c6dd06cf-0865-4634-9687-ba850837bc66" alt="Quiz"></td>-->
-<!--  </tr>-->
-<!--  <tr>-->
-<!--    <td><img src="https://github.com/user-attachments/assets/04945719-87a9-4635-b940-48ea5f0d8cca" alt="Video and Transcript"></td>-->
-<!--    <td><img src="https://github.com/user-attachments/assets/7a851a02-5217-4d9a-9091-35b26bdf3ee2" alt="Quiz"></td>-->
-<!--  </tr>-->
-<!--  <tr>-->
-<!--    <td align="center"><img src="https://github.com/user-attachments/assets/03eed148-47ba-4426-add1-8437f4b2f968" alt="Analytics"></td>-->
-<!--    <td align="center"><img src="https://github.com/user-attachments/assets/f143bbae-8613-4263-8af1-da9003d13f6c" alt="Analytics"></td>-->
-<!--  </tr>-->
-<!--</table>-->
+<table style="width: 100%; table-layout: fixed;">
+  <tr>
+    <td style="width: 50%; text-align: center;">
+      <img src="https://github.com/user-attachments/assets/1c208831-52af-41a3-ac96-c164f17f04b9" alt="Landing Page" style="width: 100%; height: 250px; object-fit: cover;">
+    </td>
+    <td style="width: 50%; text-align: center;">
+      <img src="https://github.com/user-attachments/assets/b4d9771b-0e57-431a-bf99-3414299ff349" alt="Home" style="width: 100%; height: 250px; object-fit: cover;">
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 50%; text-align: center;">
+      <img src="https://github.com/user-attachments/assets/77cebb9b-d86f-47cf-b16c-0f1b0bde2714" alt="Video and Transcript" style="width: 100%; height: 250px; object-fit: cover;">
+    </td>
+    <td style="width: 50%; text-align: center;">
+      <img src="https://github.com/user-attachments/assets/c6dd06cf-0865-4634-9687-ba850837bc66" alt="Quiz" style="width: 100%; height: 250px; object-fit: cover;">
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 50%; text-align: center;">
+      <img src="https://github.com/user-attachments/assets/04945719-87a9-4635-b940-48ea5f0d8cca" alt="Video and Transcript" style="width: 100%; height: 250px; object-fit: cover;">
+    </td>
+    <td style="width: 50%; text-align: center;">
+      <img src="https://github.com/user-attachments/assets/7a851a02-5217-4d9a-9091-35b26bdf3ee2" alt="Quiz" style="width: 100%; height: 250px; object-fit: cover;">
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 50%; text-align: center;">
+      <img src="https://github.com/user-attachments/assets/03eed148-47ba-4426-add1-8437f4b2f968" alt="Analytics" style="width: 100%; height: 250px; object-fit: cover;">
+    </td>
+    <td style="width: 50%; text-align: center;">
+      <img src="https://github.com/user-attachments/assets/f143bbae-8613-4263-8af1-da9003d13f6c" alt="Analytics" style="width: 100%; height: 250px; object-fit: cover;">
+    </td>
+  </tr>
+</table>
 
 ## Features
 
@@ -125,4 +130,3 @@ https://github.com/user-attachments/assets/3a2079df-750e-498d-ae74-9608a988e551
 ---
 
 With FlowPro, you can effortlessly transform your ER diagrams into fully functional backend systems, reducing development time and enabling rapid iteration.
-
