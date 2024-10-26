@@ -47,6 +47,11 @@ export default function Landing() {
                   <div className="switch2"></div>
                 </div>
                 <span className="chip2 active2">ER Diagram</span>
+                <div className="linkWrapper2 rotate-180">
+                  <div className="link2"></div>
+                  <div className="switch2"></div>
+                </div>
+                <span className="chip2 backdrop-blur-md" >BRD</span>
               </div>
               
               <h1 className=" text-6xl font-medium pb-4 mx-auto text-center bg-clip-text bg-gradient-to-b from-white to-slate-500 text-transparent ">
@@ -102,6 +107,11 @@ export default function Landing() {
                   <div className="switch"></div>
                 </div>
                 <span className="chip active">Code</span>
+                <div className="linkWrapper">
+                  <div className="link"></div>
+                  <div className="switch"></div>
+                </div>
+                <span className="chip backdrop-blur-md">Dependency Graph</span>
               </div>
 
           <div className="grid grid-cols-[1fr_auto_1fr] w-full mt-24">
