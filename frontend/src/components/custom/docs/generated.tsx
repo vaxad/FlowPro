@@ -2,7 +2,7 @@ import Code from "./code-block";
 
 export default function GeneratedDocs() {
     return (
-        <div className="pt-6">
+        <div className="pt-6 max-w-7xl mx-auto">
             <h1 className="font-semibold text-2xl underline">FlowPI Backend Documentation</h1>
             <p className="text-lg pt-2">
                 Welcome to the documentation for your auto-generated backend API using <strong>Express.js</strong> and <strong>Prisma</strong>. This API is designed to provide CRUD functionality for your defined entities and relations, along with optional authentication features.
