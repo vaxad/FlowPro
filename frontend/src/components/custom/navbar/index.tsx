@@ -2,7 +2,6 @@ import { NavLinkProps } from "@/lib/types/common";
 import { ArrowTopRightIcon } from "@radix-ui/react-icons";
 import React from "react";
 import NavLink from "./nav-link";
-import { ModeToggle } from "@/components/ui/theme-toggler";
 import Link from "next/link";
 
 export default function navbar() {
@@ -15,10 +14,10 @@ export default function navbar() {
       name: "ERD",
       href: "/create",
     },
-        {
-            name: "Prompt",
-            href: "/prompt"
-        },
+    {
+      name: "Prompt",
+      href: "/prompt"
+    },
     {
       name: "Docs",
       href: "/docs",

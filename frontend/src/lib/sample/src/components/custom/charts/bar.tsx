@@ -14,7 +14,6 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from "@/components/ui/chart"
-import { capitalize } from "@/lib/utils"
 
 export const description = "A bar chart with a label"
 

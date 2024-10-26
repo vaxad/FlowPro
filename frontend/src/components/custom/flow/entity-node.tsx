@@ -3,7 +3,7 @@ import { Handle, Node, NodeProps, Position, useReactFlow } from '@xyflow/react';
 import { Attribute, ConstraintType } from '@/lib/types/project';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { ExpandIcon, PlusIcon, ShrinkIcon, Trash2Icon, Scaling } from 'lucide-react';
+import { Trash2Icon, Scaling } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select';
 import { attributeTypes } from '@/lib/maps/project';
 import { Grip } from 'lucide-react';
@@ -119,10 +119,10 @@ export default function EntityNode({ data, id }: NodeProps<EntityNodeProps>) {
             <Handle type="target" position={Position.Top} />
             <div className='border border-gray-600 shadow-xl shadow-black rounded-xl p-3 bg-gradient-to-b from-[#150031] to-[#07010F]'>
                 <div className='flex justify-between'>
-                <Input className='font-semibold w-fit' placeholder='Entity Name' name="name" variant='underlined' value={data.name} onChange={onChange} />
-                <Grip className='opacity-60 h-4'/>
+                    <Input className='font-semibold w-fit' placeholder='Entity Name' name="name" variant='underlined' value={data.name} onChange={onChange} />
+                    <Grip className='opacity-60 h-4' />
                 </div>
-                
+
                 {data.open && <div className='mt-2 flex flex-col gap-2'>
                     {data.attributes.map((attr, index) => (
                         <div key={index} className='grid grid-cols-[2fr_1fr_0.25fr] gap-2'>
@@ -152,11 +152,11 @@ export default function EntityNode({ data, id }: NodeProps<EntityNodeProps>) {
                 <div className='flex gap-2 mt-2'>
 
                     <Button onClick={deleteNode} className='w-full mt-2 bg-red-700/10 text-red-600 '>
-                        <Trash2Icon className='h-4 '/> Delete
+                        <Trash2Icon className='h-4 ' /> Delete
                     </Button>
                     <Button onClick={onOpenChange} className='w-full mt-2 bg-transparent border border-gray-600 text-gray-400 hover:text-black'>
                         <Scaling className="h-4" /> Resize
-                    </Button>   
+                    </Button>
                 </div>
             </div>
             <Handle type="source" position={Position.Bottom} id="a" />

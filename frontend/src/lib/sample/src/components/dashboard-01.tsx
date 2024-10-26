@@ -12,7 +12,7 @@ import { user } from "@prisma/client"
 import { Entity } from "@/lib/types"
 import EntityTable from "./table"
 
-export default function Dashboard({ records, entity }: { records: user[], entity: Entity }) {
+export default function Dashboard({ records, entity }: { records: any[], entity: Entity }) {
   const totalRecords = records.length;
   const lastMonthTotal = Math.floor(totalRecords * 0.8); // Assuming 20% growth from last month
   const percentageGrowth = ((totalRecords - lastMonthTotal) / lastMonthTotal || 1) * 100;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextRequest, NextResponse } from 'next/server';
 import archiver from "archiver";
 import { Entity } from '@/lib/types/project';
@@ -102,7 +103,7 @@ function generatePydanticModel(entity: Entity, relations: any[]): string {
 
 export async function POST(req: NextRequest) {
   const body: GenerateFormData = await req.json();
-  let { entities, relations } = body;
+  const { entities, relations } = body;
   const { auth, name, description } = body;
 
   const archive = archiver('zip', { zlib: { level: 9 } });
@@ -252,7 +253,7 @@ class User(BaseModel):
   archive.append(modelsContent, { name: 'backend/models.py' });
 
   
-  let utilsContent = `from fastapi import Depends, HTTPException, status
+  const utilsContent = `from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
