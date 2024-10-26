@@ -26,10 +26,11 @@ const getAllFiles = async (dirPath: string, arrayOfFiles: string[] = []) => {
 export async function POST(req: NextRequest) {
   try {
     const body: GenerateFormData =  await req.json();
-  let { entities, relations } =  body
-  const { auth:bodyAuth, name, description } =  body
+  const { entities } =  body
+  let { relations } =  body
+  // const { auth:bodyAuth } =  body
 
-  const auth = bodyAuth && (bodyAuth as unknown as string) != 'false' ;
+  // const auth = bodyAuth && (bodyAuth as unknown as string) != 'false' ;
   
   relations = ensureRelations(relations);
     const directoryPath = path.join(process.cwd(), 'src/lib/sample');
@@ -39,7 +40,7 @@ export async function POST(req: NextRequest) {
     });
 
     const chunks: Uint8Array[] = [];
-    
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     archive.on('data', (chunk:any) => {
       chunks.push(chunk);
     });
