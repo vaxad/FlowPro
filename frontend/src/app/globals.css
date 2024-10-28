@@ -234,10 +234,8 @@ html {
   width: var(--linkWidth);
   display: grid;
   place-items: center;
-  & > * {
-    grid-area: 1/-1;
-  }
 }
+
 .link {
   width: 100%;
   height: var(--linkHeight);
@@ -274,7 +272,7 @@ html {
 
 .chipsWrapper2 {
   --base-border-color: hsla(0, 0%, 100%, 0.267);
-  --active-color: hsl(256, 85%, 57%);
+  --active-color: hsl(256, 100%, 71%);
   
   display: grid;
   grid-auto-flow: column;
@@ -343,5 +341,14 @@ html {
   to {
     --colorStop: calc(100% + 12.5%);
     /*  add --switch-width    */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .linkWrapper {
+    --linkWidth: 2rem;
+  }
+  .linkWrapper2 {
+    --linkWidth: 2rem;
   }
 }

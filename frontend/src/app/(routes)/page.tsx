@@ -9,8 +9,8 @@ import "@devnomic/marquee/dist/index.css"; // if you copy ala shadcn, no need im
 export default function Landing() {
   return (
     <>
-      <main className=" flex flex-col justify-center flex-grow  mx-10  min-h-[90vh]">
-        <div className="  rounded-3xl p-6 min-h-[90vh] mt-2 relative overflow-clip">
+      <main className=" flex flex-col justify-center flex-grow  mx-10 max-md:mx-4 max-sm:mx-2  min-h-[90vh]">
+        <div className="  rounded-3xl p-6 max-sm:p-2 min-h-[90vh] mt-2 relative overflow-clip">
           <div className="flex flex-col mt-4">
             <div className="grid grid-cols-[1fr_auto_1fr] w-full mb-20">
               <div className="">
@@ -19,7 +19,7 @@ export default function Landing() {
                   fade={true}
                   className="gap-[3rem] [--duration:7s]"
                 >
-                  <img src="/marquee schema.png" alt="" />
+                  <img src="/marquee schema.png" className="max-sm:h-44" alt="" />
                 </Marquee>
               </div>
               <div className="dividerWrapper z-10">
@@ -33,31 +33,31 @@ export default function Landing() {
                   fade={true}
                   className="gap-[3rem] [--duration:7s]"
                 >
-                  <img src="/Frame 25.png" alt="" />
-                  <img src="/Frame 25.png" alt="" />
+                  <img src="/Frame 25.png" className="max-sm:h-44" alt="" />
+                  <img src="/Frame 25.png" className="max-sm:h-44" alt="" />
                 </Marquee>
               </div>
             </div>
 
             <div className="z-10">
               <div className="chipsWrapper2 w-fit mx-auto mb-4">
-                <span className="chip2 backdrop-blur-md">Prompts</span>
+                <span className="chip2 backdrop-blur-md max-sm:text-xs">Prompts</span>
                 <div className="linkWrapper2">
                   <div className="link2"></div>
                   <div className="switch2"></div>
                 </div>
-                <span className="chip2 active2">ER Diagram</span>
+                <span className="chip2 active2 max-sm:text-xs font-bold">ERD</span>
                 <div className="linkWrapper2 rotate-180">
                   <div className="link2"></div>
                   <div className="switch2"></div>
                 </div>
-                <span className="chip2 backdrop-blur-md" >BRD</span>
+                <span className="chip2 backdrop-blur-md max-sm:text-xs" >BRD</span>
               </div>
 
-              <h1 className=" text-6xl font-medium pb-4 mx-auto text-center bg-clip-text bg-gradient-to-b from-white to-slate-500 text-transparent ">
+              <h1 className=" text-6xl max-sm:text-4xl font-medium pb-4 mx-auto text-center bg-clip-text bg-gradient-to-b from-white to-slate-500 text-transparent ">
                 Built for Laymen.
               </h1>
-              <p className=" text-sm font-light text-center mx-auto text-gray-400 w-[35rem]">
+              <p className=" text-sm max-sm:text-xs font-light text-center mx-auto text-gray-400 max-w-[35rem]">
                 No code? No problem - FlowPI is designed to be user-friendly and
                 intuitive, so you can create your own APIs without writing a
                 single line of code.
@@ -87,13 +87,13 @@ export default function Landing() {
 
           <div className="bgGrad h-72 w-[2000px] absolute -bottom-10 -ml-20 -z-10"></div>
         </div>
-        <div className=" rounded-3xl p-6 min-h-[90vh] mt-16 relative overflow-clip">
+        <div className=" rounded-3xl p-6 max-sm:p-3 min-h-[90vh] mt-16 relative overflow-clip">
           <div className="flex flex-col mt-10">
             <div className="z-10">
-              <h1 className=" text-6xl font-medium pb-4 mx-auto text-center bg-clip-text bg-gradient-to-b from-white to-slate-300 text-transparent ">
+              <h1 className=" text-6xl max-sm:text-4xl font-medium pb-4 mx-auto text-center bg-clip-text bg-gradient-to-b from-white to-slate-300 text-transparent ">
                 Built for Developers.
               </h1>
-              <p className=" text-sm font-light text-center mx-auto text-gray-200 w-[35rem]">
+              <p className=" text-sm max-sm:text-xs font-light text-center mx-auto text-gray-200 max-w-[35rem]">
                 Automate the creation of fully functional REST APIs for your
                 database models, including CRUD operations, authentication, and
                 Prisma ORM integration.{" "}
@@ -101,17 +101,17 @@ export default function Landing() {
             </div>
           </div>
           <div className="chipsWrapper w-fit mx-auto mt-8">
-            <span className="chip backdrop-blur-md">ER Diagram</span>
+            <span className="chip backdrop-blur-md max-sm:text-xs">ERD</span>
             <div className="linkWrapper">
               <div className="link"></div>
               <div className="switch"></div>
             </div>
-            <span className="chip active">Code</span>
-            <div className="linkWrapper">
+            <span className="chip active max-sm:text-xs">Code</span>
+            <div className="linkWrapper ">
               <div className="link"></div>
               <div className="switch"></div>
             </div>
-            <span className="chip backdrop-blur-md">Dependency Graph</span>
+            <span className="chip backdrop-blur-md max-sm:text-xs"> Graph</span>
           </div>
 
           <div className="grid grid-cols-[1fr_auto_1fr] w-full mt-24">
@@ -121,7 +121,7 @@ export default function Landing() {
                 fade={true}
                 className="gap-[3rem] [--duration:7s]"
               >
-                <img src="/marquee schema.png" alt="" />
+                <img src="/marquee schema.png" className="max-sm:h-44" alt="" />
               </Marquee>
             </div>
             <div className="dividerWrapper2 z-10">
@@ -135,8 +135,8 @@ export default function Landing() {
                 fade={true}
                 className="gap-[3rem] [--duration:7s]"
               >
-                <img src="/Frame 25.png" alt="" />
-                <img src="/Frame 25.png" alt="" />
+                <img src="/Frame 25.png" className="max-sm:h-44" alt="" />
+                <img src="/Frame 25.png" className="max-sm:h-44" alt="" />
               </Marquee>
             </div>
           </div>

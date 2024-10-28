@@ -212,9 +212,9 @@ export default function Flow({ form }: FlowProps) {
                     <DownloadButton />
                 </ReactFlow>
             </div>
-            <div className="flex justify-between items-center mt-4">
-                <div className="flex gap-2 items-center">
-                    <Label className="text-xl font-semibold">Authentication:</Label>
+            <div className="flex justify-between items-center mt-4 max-sm:flex-col-reverse">
+                <div className="flex gap-2 items-center max-sm:mt-2">
+                    <Label className="text-xl font-medium max-sm:text-sm ">Authentication:</Label>
                     <Switch
                         checked={auth}
                         onCheckedChange={() => {

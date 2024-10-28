@@ -82,12 +82,12 @@ export default function QueryForm() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-[calc(100vh-56px)]">
-            <div className="py-2 pl-2 pr-4 bg-cyan-400/20 rounded-full mb-2 text-xs text-cyan-300">
+        <div className="flex flex-col items-center mx-4 justify-center min-h-[calc(100vh-56px)]">
+            <div className="py-2 pl-2 pr-4 bg-cyan-400/20 rounded-full mb-2 text-xs text-cyan-300 flex items-center">
                 <span className="bg-cyan-300 text-black text-xs font-semibold px-2 py-0.5 rounded-full mr-2">Error Free!</span>
                 Try this even if you are new to backend.
             </div>
-            <h1 className="text-center text-4xl font-semibold mb-10 bg-clip-text bg-gradient-to-b from-white to-slate-500 text-transparent">
+            <h1 className="text-center text-4xl font-semibold mb-10 max-md:text-2xl bg-clip-text bg-gradient-to-b from-white to-slate-500 text-transparent">
                 How can we help you ship your Backend?
             </h1>
             <div className="w-full max-w-4xl px-4 border focus-within:border-white transition-colors rounded-2xl">
@@ -132,7 +132,7 @@ export default function QueryForm() {
                                 </span>
                             </div>
                             <div className="mb-4">
-                                <Button type="submit" className="w-fit" onClick={() => onSubmit(form.getValues())}>
+                                <Button type="submit" className="w-fit border bg-white text-black" onClick={() => onSubmit(form.getValues())}>
                                     <Upload className="h-4 mr-1" /> Submit
                                 </Button>
                             </div>
